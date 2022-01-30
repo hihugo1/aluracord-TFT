@@ -20,18 +20,6 @@ function Titulo(props) {
   );
 }
 
-// Componente React
-// function HomePage() {
-//     // JSX
-//     return (
-//         <div>
-//             <Titulo tag="h2">Boas vindas de volta!</Titulo>
-//             <h2>Discord - Alura Matrix</h2>
-//         </div>
-//     )
-// }
-// export default HomePage
-
 export default function PaginaInicial() {
   // const username = 'hihugo1'; 
   const [username, setUsername] = React.useState('hihugo1');
@@ -42,7 +30,7 @@ export default function PaginaInicial() {
   const [twitter, setTwitter] = React.useState('0')
   const [bio, setBio] = React.useState('0')
 
-  const url = fetch(`https://api.github.com/users/${username}`)
+  fetch(`https://api.github.com/users/${username}`)
     .then(res => res.json())
     .then(data => {
       setFollowers(data.followers)
@@ -90,7 +78,7 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Titulo tag="h2">Boas vindas de volta!</Titulo>
+            <Titulo tag="h2">Boas vindas Invocador!</Titulo>
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
               {appConfig.name}
             </Text>
@@ -130,6 +118,7 @@ export default function PaginaInicial() {
             <Button
               type='submit'
               label='Entrar'
+
               fullWidth
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
@@ -169,6 +158,7 @@ export default function PaginaInicial() {
               src={`https://github.com/${username}.png`} 
             />
             </a>
+
             <Text
               variant="body4"
               styleSheet={{

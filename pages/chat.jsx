@@ -1,5 +1,244 @@
-export default function PaginaDoChat(){
-    return (
-        <div>Pagina Do Chat</div>
-    )
+import { Box, Text, TextField, Image, Button } from "@skynexui/components";
+import React from "react";
+import appConfig from "../config.json";
+
+export default function ChatPage() {
+  // Sua lógica vai aqui
+  const [mensagem, setMensagem] = React.useState("");
+  const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
+  // ./Sua lógica vai aqui
+
+  function handleNovaMensagem(novaMensagem) {
+    const mensagem = {
+      id: listaDeMensagens.length + 1,
+      de: "hihugo1",
+      texto: novaMensagem,
+    };
+    setListaDeMensagens([mensagem, ...listaDeMensagens]);
+    setMensagem("");
+  }
+
+
+  return (
+    <Box
+      styleSheet={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundImage: `url(https://images.alphacoders.com/120/1204920.jpg)`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundBlendMode: "multiply",
+        color: appConfig.theme.colors.neutrals["000"],
+      }}
+    >
+      <Box
+        styleSheet={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
+          borderRadius: "5px",
+          backgroundColor: appConfig.theme.colors.neutrals[700],
+          height: "100%",
+          maxWidth: "95%",
+          maxHeight: "95vh",
+          padding: "32px",
+        }}
+      >
+        <Header />
+        <Box
+          styleSheet={{
+            position: "relative",
+            display: "flex",
+            flex: 1,
+            height: "80%",
+            backgroundColor: appConfig.theme.colors.neutrals[600],
+            flexDirection: "column",
+
+            borderRadius: "5px",
+            padding: "16px",
+          }}
+        >
+          <MessageList mensagens={listaDeMensagens}/>
+          {/*{listaDeMensagens.map((mensagemAtual) =>{
+                        return (
+                        <li key={mensagemAtual.id}>
+                            {mensagemAtual.de}:{mensagemAtual.texto}
+                        </li>
+                        )
+                    })}*/}
+
+          <Box
+            as="form"
+            styleSheet={{
+              display: "flex",
+              alignItems: "center",
+              
+            }}
+          >
+            <TextField
+              value={mensagem}
+              onChange={(event) => {
+                const value = event.target.value;
+                setMensagem(value);
+              }}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  handleNovaMensagem(mensagem);
+                }
+              }}
+              placeholder="Insira sua mensagem aqui..."
+              type="textarea"
+              styleSheet={{
+                width: "100%",
+                border: "0",
+                resize: "none",
+                borderRadius: "5px",
+                padding: "6px 8px",
+                backgroundColor: appConfig.theme.colors.neutrals[800],
+                marginRight: "12px",
+                color: appConfig.theme.colors.neutrals[200],
+              }}
+            />
+            <Button
+            label="Enviar"
+            onClick={
+                (event) => {
+                        event.preventDefault();
+                        handleNovaMensagem(mensagem)
+                }
+            }
+
+            styleSheet={{
+                height: '2rem',
+                padding: '1.4rem 2rem',
+                border: '0',
+                backgroundColor: '#000',
+                color: '#fff'
+            }}>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+function Header() {
+  return (
+    <>
+      <Box
+        styleSheet={{
+          width: "100%",
+          marginBottom: "16px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text variant="heading5">Chat</Text>
+        <Button
+          variant="tertiary"
+          colorVariant="neutral"
+          href="/"
+          iconName= "FaArrowRight"
+        />
+      </Box>
+    </>
+  );
+}
+
+function MessageList(props) {
+  console.log(props);
+
+
+  return (
+    <Box
+      tag="ul"
+      styleSheet={{
+        overflowY: "scroll",
+        scrollBehavior: 'smooth',
+        display: "flex",
+        flexDirection: "column-reverse",
+        flex: 1,
+        color: appConfig.theme.colors.neutrals["000"],
+        marginBottom: "16px",
+    }
+    }
+    >
+      {props.mensagens.map((mensagem) => {
+        return (
+          <Text
+            key={mensagem.id}
+            tag="li"
+            styleSheet={{
+              borderRadius: "5px",
+              padding: "6px",
+              marginBottom: "12px",
+              hover: {
+                backgroundColor: appConfig.theme.colors.neutrals[700],
+              },
+            }}
+          >
+            <Box
+              styleSheet={{
+                position: 'relative',
+                marginBottom: "8px",
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+              }}
+            >
+              <Image
+                styleSheet={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                  marginRight: "8px",
+                }}
+                src={`https://github.com/hihugo1.png`}
+              />
+              <Text tag="strong">{mensagem.de}</Text>
+              <Text
+                styleSheet={{
+                  fontSize: "10px",
+                  marginLeft: "8px",
+                  color: appConfig.theme.colors.neutrals[300],
+                }}
+                tag="span"
+              >
+                {new Date().toLocaleDateString()}
+              </Text>
+                <button
+                    onClick={
+                        (event) => {
+                                event.preventDefault();
+                                props.mensagens.filter( msg =>{
+                                    console.log(msg)
+                                    delete msg.texto
+                                })
+                        }
+                    }
+                    style={{
+                    position: 'absolute',
+                    padding: '5px 10px',
+                    backgroundColor: '#f00',
+                    border: '1px solid #f00',
+                    borderRadius: '5px',
+                    cursor: "pointer",
+                    right: '5vw',
+                    top: '10px',
+                    color: '#fff'
+                }} >X</button>
+            </Box>
+            {mensagem.texto}
+          </Text>
+
+        );
+      })}
+    </Box>
+  );
 }
