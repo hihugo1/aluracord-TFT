@@ -15,7 +15,7 @@ function EscutaMensagemEmTempoReal(){
   return supabaseClient
     .from('mensagens')
     .on('INSERT', (oqueVeio) =>{
-      console.log("O que veio",oqueVeio)
+      console.log("O que ve",oqueVeio)
     })
     .subscribe();
 }
