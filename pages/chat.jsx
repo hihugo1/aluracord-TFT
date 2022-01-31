@@ -251,7 +251,7 @@ function MessageList(props) {
               }}
             >
               <a href={`https://github.com/${mensagem.de}`}>
-              <Image
+              <Image alt="pessoa"
                 styleSheet={{
                   width: "20px",
                   height: "20px",
@@ -289,16 +289,14 @@ function MessageList(props) {
 
               {mensagem.texto.startsWith(':sticker:') 
                   ?(
-                    <Image src={mensagem.texto.replace(':sticker:', '')} 
+                    <Image alt="sticker" src={mensagem.texto.replace(':sticker:', '')} 
                     styleSheet={
                       {
                         width: {
                           xs: '200px',
                           sm: '290px',
                         }                        
-                      }
-                    }
-                    / >
+                      }}/>
                     )
                   :(
                     mensagem.texto

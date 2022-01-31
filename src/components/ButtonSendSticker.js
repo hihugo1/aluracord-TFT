@@ -79,6 +79,7 @@ export function ButtonSendSticker(props) {
                     props.onStickerClick(sticker);
                   }
                 }}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
                 onClick={() => {
                   if(Boolean(props.onStickerClick)){
                   props.onStickerClick(sticker)
@@ -97,7 +98,7 @@ export function ButtonSendSticker(props) {
                   }
                 }}
               >
-                <Image src={sticker} />
+                <Image alt='sticker' src={sticker} />
               </Text>
             ))}
           </Box>

@@ -147,8 +147,8 @@ export default function PaginaInicial() {
               minHeight: '240px',
             }}
           >
-            <a href={`https://github.com/${username}`}>
-            <Image
+            <a  href={`https://github.com/${username}`}>
+            <Image alt="pessoa"
               styleSheet={{
                 borderRadius: '50%',
                 marginBottom: '16px',
