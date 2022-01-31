@@ -14,8 +14,8 @@ const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 function EscutaMensagemEmTempoReal(){
   return supabaseClient
     .from('mensagens')
-    .on('INSERT', () =>{
-      console.log('Houve uma nova mensagem')
+    .on('INSERT', (oqueVeio) =>{
+      console.log("O que veio",oqueVeio)
     })
     .subscribe();
 }
