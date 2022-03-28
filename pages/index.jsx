@@ -45,7 +45,7 @@ export default function PaginaInicial() {
       <Box
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          backgroundImage: 'url(https://images3.alphacoders.com/118/thumb-1920-1185045.jpg)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1590497008432-598f04441de8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1091&q=80)',
           backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
         }}
       >
@@ -78,7 +78,7 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Titulo tag="h2">Boas vindas Invocador!</Titulo>
+            <Titulo tag="h2">Boas vindas ao Port.io</Titulo>
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
               {appConfig.name}
             </Text>
